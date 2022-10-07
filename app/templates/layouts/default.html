@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  {% block head%} {% endblock %}
+  
+</head>
+<br />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+<body class="img-fluid">
+
+  {% block body %} {% endblock %}
+  <br><br><br>
+ 
+</body>
+{% block js %} {% endblock %}
+
+
+</html>

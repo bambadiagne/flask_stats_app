@@ -1,0 +1,53 @@
+{% extends 'layouts/default.html' %}
+{% block head %}
+<title>Datatable Page</title>
+<link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+<table id="example" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            {% for title in  titles %}
+            <th>{{title}}</th>
+            
+            {% endfor %}
+         
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in  rows %}
+        <tr>
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[5]}}</td>
+        </tr>
+        {% endfor %}
+        
+       
+    </tbody>
+    <tfoot>
+        <tr>
+            {% for title in  titles %}
+            <th>{{title}}</th>
+            
+            {% endfor %}
+         
+        </tr>
+    </tfoot>
+</table> 
+{% endblock %}
+{% block js %} 
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+{% endblock %}
