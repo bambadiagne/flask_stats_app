@@ -4,8 +4,13 @@
 <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
+<div class="container-xl">
 
-<table id="example" class="table table-striped" style="width:100%">
+<div>
+    <button id="showTable" class="btn btn-primary">Afficher</button>
+</div>
+    
+<table id="example" class="table table-striped" hidden="true" style="width:100%">
     <thead>
         <tr>
             {% for title in  titles %}
@@ -39,12 +44,17 @@
         </tr>
     </tfoot>
 </table> 
+</div>
+
 {% endblock %}
 {% block js %} 
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
-
+    document.getElementById("showTable").addEventListener('click',(e)=>{
+        e.preventDefault();
+        document.getElementById('example').hidden=!document.getElementById('example').hidden;
+    })
     $(document).ready(function () {
         $('#example').DataTable();
     });

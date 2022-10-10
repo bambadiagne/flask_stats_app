@@ -1,0 +1,73 @@
+{% extends 'layouts/default.html' %}
+{% block head %}
+<title>Chart Page</title>
+{% endblock %}
+{% block body %}
+
+<div class='container-lg'>
+    <h1 class='text-center'>Affichage graphique</h1>
+    <div class='row'>
+        <div class='col'>
+            <canvas id="wageChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col'>
+          <canvas id="genderChart" width="400" height="400"></canvas>
+
+      </div> 
+      </div>
+       
+  
+</div>
+{% endblock %}
+{% block js %} 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var genderData = JSON.parse('{{gender_list | tojson}}');
+    const ctx = document.getElementById('genderChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Genderfluid', 'Polygender', 'Genderqueer', 'Female', 'Bigender', 'Male', 'Agender', 'Non-binary'],
+            datasets: [{
+              label: 'Pourcentage du genre',
+              data:genderData,
+              backgroundColor: [
+                'rgb(192, 194, 209)',
+                'rgb(166, 140, 14)',
+                'rgb(159, 29, 123)',
+                'rgb(118, 229, 34)',
+                'rgb(135, 15, 54)',
+                'rgb(92, 42, 161)',
+                'rgb(51, 254, 252)',
+                'rgb(211, 38, 55)',
+              ],
+              hoverOffset: 4
+            }]
+          },
+        
+    });
+    var wageData = JSON.parse('{{wages_list | tojson}}');
+    const ctx2 = document.getElementById('wageChart').getContext('2d');
+    const myChart2 = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: wageData[0],
+            datasets: [{
+              data: wageData[0],
+              borderColor: "red",
+              label:"Salaire femme",
+              fill: false
+            },{
+              data: wageData[1],
+              borderColor: "green",
+              label:"Salaire homme",
+              fill: false
+            },]
+          },
+          options: {
+            legend: {display: true}
+          }
+         
+    });
+</script>   
+{% endblock %}
